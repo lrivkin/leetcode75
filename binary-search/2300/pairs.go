@@ -9,8 +9,6 @@ func successfulPairs(spells []int, potions []int, success int64) []int {
 	sort.Ints(potions)
 	//fmt.Printf("%v\n", potions)
 
-	result := make([]int, len(spells))
-
 	// precalculate the number that will be successful + store in a map
 	potionsCountMap := map[int]int{}
 	for i, potion := range potions {
@@ -33,17 +31,18 @@ func successfulPairs(spells []int, potions []int, success int64) []int {
 
 		if exists {
 			//fmt.Printf("found minimum potion = %d idx=%d, matches %d spells\n", potions[idx], idx, potionsCountMap[potions[idx]])
-			result[i] = potionsCountMap[potions[idx]]
+			spells[i] = potionsCountMap[potions[idx]]
 			continue
 		}
 
 		if idx >= len(potions) {
 			//fmt.Printf("no matches\n")
+			spells[i] = 0
 			continue
 		}
 
 		//fmt.Printf("closest match = %d idx=%d, matches %d spells\n", potions[idx], idx, potionsCountMap[potions[idx]])
-		result[i] = potionsCountMap[potions[idx]]
+		spells[i] = potionsCountMap[potions[idx]]
 	}
-	return result
+	return spells
 }
