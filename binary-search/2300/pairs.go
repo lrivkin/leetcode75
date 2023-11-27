@@ -2,11 +2,10 @@ package pairs
 
 import (
 	"slices"
-	"sort"
 )
 
 func successfulPairs(spells []int, potions []int, success int64) []int {
-	sort.Ints(potions)
+	slices.Sort(potions)
 	//fmt.Printf("%v\n", potions)
 
 	// precalculate the number that will be successful + store in a map
